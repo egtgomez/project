@@ -11,7 +11,9 @@ sapply(packages, require, character.only = TRUE, quietly = TRUE)
 #Set path.
 path <- getwd()
 path
+
 ## [1] "C:/Users/egt/Documents/Repositories/Coursera/GettingAndCleaningData/Project"
+
 
 #Get the data
 url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
@@ -21,6 +23,11 @@ if (!file.exists(path)) {
 }
 download.file(url, file.path(path, f))
 
+executable <- file.path("C:", "Program Files (x86)", "WinRAR", "WinRAR.exe")
+parameters <- "x"
+cmd <- paste(paste0("\"", executable, "\""), parameters, paste0("\"", file.path(path, 
+    f), "\""))
+system(cmd)
 
 ## Garbage collection
 rm(testData)
