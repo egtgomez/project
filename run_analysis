@@ -1,10 +1,26 @@
 #!/usr/bin/env Rscript
 #!Estevan Gomez
 
-## Read data sets and combine
-testData <- read.table("test/X_test.txt")
-trainData <- read.table("train/X_train.txt")
-X <- rbind(testData, trainData)
+#Preliminaries
+#Load packages.
+packages <- c("data.table", "reshape2")
+sapply(packages, require, character.only = TRUE, quietly = TRUE)
+
+## data.table   reshape2 
+##       TRUE       TRUE
+#Set path.
+path <- getwd()
+path
+## [1] "C:/Users/egt/Documents/Repositories/Coursera/GettingAndCleaningData/Project"
+
+#Get the data
+url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+f <- "Dataset.zip"
+if (!file.exists(path)) {
+    dir.create(path)
+}
+download.file(url, file.path(path, f))
+
 
 ## Garbage collection
 rm(testData)
